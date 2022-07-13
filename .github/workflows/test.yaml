@@ -16,3 +16,10 @@ jobs:
       - name: world
     steps:
     - run: echo "noop"
+  use_matrix:
+    name: Use matrix
+    needs: matrix
+    matrix: ${{ fromJSON(needs.matrix.outputs.matrix) }}
+    steps:
+    - name: dump
+      run: echo "${{ matrix.hello }} ${{ matrix.name }}"
