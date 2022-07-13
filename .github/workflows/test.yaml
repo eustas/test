@@ -1,0 +1,16 @@
+name: Whatever
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  matrix:
+    name: Define matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ toJSON(matrix) }}
+    matrix:
+      hello: [1, 2, 3]
+      include:
+        - name: world
