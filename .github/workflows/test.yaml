@@ -15,4 +15,4 @@ jobs:
       include:
       - name: world
     steps:
-    - run:
+    - run: echo "noop"
