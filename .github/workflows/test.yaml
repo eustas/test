@@ -13,9 +13,10 @@ jobs:
     matrix:
       hello: [1, 2, 3]
       include:
-      - name: world
+        - name: world
     steps:
     - run: echo "noop"
+
   use_matrix:
     name: Use matrix
     needs: matrix
