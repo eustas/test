@@ -2,7 +2,7 @@ name: Whatever
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   matrix:
