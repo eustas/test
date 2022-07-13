@@ -12,8 +12,8 @@ jobs:
       matrix: ${{ toJSON(matrix) }}
     strategy:
       matrix:
-        hello: [1, 2, 3]
         include:
+          - name: hello
           - name: world
     steps:
     - run: echo "noop"
@@ -23,7 +23,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: matrix
     strategy:
-      matrix: ${{ fromJSON(needs.matrix.outputs.matrix) }}
+      matrix:
+        include: ${{ fromJSON(needs.matrix.outputs.matrix) }}
     steps:
     - name: dump
-      run: echo "${{ matrix.hello }} ${{ matrix.name }}"
+      run: echo " ${{ matrix.name }}"
