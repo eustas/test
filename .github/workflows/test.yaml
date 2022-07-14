@@ -30,4 +30,4 @@ jobs:
     steps:
       - name: dump
         run: |
-          echo "${{ matrix.server }}"
+          echo "${{ matrix.server.go }} ${{ matrix.server.commit }}"
