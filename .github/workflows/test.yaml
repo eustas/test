@@ -13,6 +13,7 @@ jobs:
           - matrix: # this is a configuration object that is transformed to...
             - go: 1.13
               commit: v1.0.0
+              good: true
             - go: 1.14
               commit: v1.2.0
             tensor: # this is a configuration object that is transformed to...
@@ -26,7 +27,7 @@ jobs:
     steps:
       - id: set-matrix
         run: |
-          echo '${{ toJSON(matrix.matrix) }}' | jq -r '"::set-output name=result1::\(.)"'
+          echo '${{ toJSON(matrix.matrix) }}' | jq -r 'map(select(.good == true)) | "::set-output name=result1::\(.)"'
           echo '${{ toJSON(matrix.tensor) }}' | jq -r '"::set-output name=result2::\(.)"'
 
   runner:
