@@ -27,7 +27,7 @@ jobs:
       - id: set-matrix
         env:
           matrix: ${{ toJSON(matrix) }}
-        run: echo "${{ toJSON(matrix.matrix) }}" | jq -r '"::set-output name=result::\(.data.tick)"'
+        run: echo '${{ toJSON(matrix) }}' | jq -r '"::set-output name=result::\(.data.tick)"'
 
   runner:
     needs: [ builder ]
