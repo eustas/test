@@ -10,24 +10,15 @@ jobs:
     strategy:
       matrix:
         matrix:
-          - data:
-              tick:
-              - go: 1.13
-                commit: v1.0.0
-              - go: 1.14
-                commit: v1.2.0
-              tock:
-              - go: 2.13
-                commit: v2.0.0
-              - go: 2.14
-                commit: v2.2.0
+          - go: 1.13
+            commit: v1.0.0
+          - go: 1.14
+            commit: v1.2.0
     outputs:
       matrix: ${{ steps.set-matrix.outputs.result }}
     steps:
       - id: set-matrix
-        env:
-          matrix: ${{ toJSON(matrix) }}
-        run: echo '${{ toJSON(matrix) }}' | jq -r '"::set-output name=result::\(.data.tick)"'
+        run: echo '${{ toJSON(matrix) }}' | jq -r '"::set-output name=result::\(.matrix)"'
 
   runner:
     needs: [ builder ]
