@@ -11,7 +11,7 @@ jobs:
       matrix:
         cfg:
           - data:
-            -: |
+            - |
               { 
                 go: 1.13,
                 commit: v1.0.0
