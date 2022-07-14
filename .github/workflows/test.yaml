@@ -19,7 +19,7 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.result }}
     steps:
       - id: set-matrix
-        run: echo '${{ toJSON(matrix.matrix) }}' | jq -r '"::set-output name=result::\(.matrix)"'
+        run: echo '${{ toJSON(matrix.matrix) }}' | jq -r '"::set-output name=result::\(.)"'
 
   runner:
     needs: [ builder ]
