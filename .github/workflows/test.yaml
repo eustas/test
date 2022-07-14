@@ -28,7 +28,7 @@ jobs:
     needs: matrix
     strategy:
       matrix:
-        include: ${{ fromJson(needs.matrix.outputs.matrix) }}
+        matrix: ${{ fromJson(needs.matrix.outputs.matrix) }}
     steps:
     - name: dump
-      run: echo "${{ matrix.go }} ${{ matrix.commit }}"
+      run: echo "${{ matrix.matrix.go }} ${{ matrix.matrix.commit }}"
