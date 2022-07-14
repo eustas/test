@@ -9,7 +9,7 @@ jobs:
     name: Define matrix
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ toJSON(matrix.include) }}
+      matrix: ${{ toJSON(matrix) }}
     strategy:
       matrix:
         include:
