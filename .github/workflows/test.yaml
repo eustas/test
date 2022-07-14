@@ -16,7 +16,7 @@ jobs:
           - name: hello
           - name: world
     steps:
-    - run: echo "noop"
+    - run: ${{ toJSON(matrix) }}
 
   use_matrix:
     name: Use matrix
