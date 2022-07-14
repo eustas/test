@@ -14,7 +14,7 @@ jobs:
             - { go: 1.13, commit: v1.0.0 }
             - { go: 1.14, commit: v1.2.0 }
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      matrix: ${{ steps.set-matrix.outputs.result }}
     steps:
       - id: set-matrix
         env:
