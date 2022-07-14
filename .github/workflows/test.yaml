@@ -10,16 +10,24 @@ jobs:
     strategy:
       matrix:
         include:
-          - matrix:
+          - matrix: # this is a configuration object that is transformed to...
             - go: 1.13
               commit: v1.0.0
             - go: 1.14
               commit: v1.2.0
+          - tensor: # this is a configuration object that is transformed to...
+            - go: 2.13
+              commit: v2.0.0
+            - go: 2.14
+              commit: v2.2.0
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.result }}
+      matrix: ${{ steps.set-matrix.outputs.result1 }}
+      tensor: ${{ steps.set-matrix.outputs.result2 }}
     steps:
       - id: set-matrix
-        run: echo '${{ toJSON(matrix.matrix) }}' | jq -r '"::set-output name=result::\(.)"'
+        run: |
+          echo '${{ toJSON(matrix.matrix) }}' | jq -r '"::set-output name=result1::\(.)"'
+          echo '${{ toJSON(matrix.tensor) }}' | jq -r '"::set-output name=result2::\(.)"'
 
   runner:
     needs: [ builder ]
