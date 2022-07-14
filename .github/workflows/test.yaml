@@ -12,11 +12,11 @@ jobs:
       matrix: ${{ toJSON(matrix) }}
     strategy:
       matrix:
-        include:
+        config:
           - name: hello
           - name: world
     steps:
-    - run: echo "noop"
+    - run: echo "${{ toJSON(matrix) }}"
 
   use_matrix:
     name: Use matrix
