@@ -12,7 +12,8 @@ jobs:
       matrix: ${{ toJSON(matrix) }}
     strategy:
       matrix:
-        config:
+        solo:
+          config:
           - name: hello
           - name: world
     steps:
