@@ -12,12 +12,12 @@ jobs:
       matrix: ${{ toJSON(matrix) }}
     strategy:
       matrix:
-        cfog:
-          - data:
+        matrix:
+          - matrix:
             - { go: 1.13, commit: v1.0.0 }
             - { go: 1.14, commit: v1.2.0 }
     steps:
-    - run: echo "${{ toJSON(matrix.cfog) }}"
+    - run: echo "${{ toJSON(matrix.matrix) }}"
 
   use_matrix:
     name: Use matrix
