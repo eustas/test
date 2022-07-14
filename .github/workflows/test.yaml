@@ -11,22 +11,23 @@ jobs:
       matrix:
         matrix:
           - data:
-            - go: 1.13
-              commit: v1.0.0
-            - go: 1.14
-              commit: v1.2.0
-          - vata:
-            - go: 2.13
-              commit: v2.0.0
-            - go: 2.14
-              commit: v2.2.0
+            - tick:
+              - go: 1.13
+                commit: v1.0.0
+              - go: 1.14
+                commit: v1.2.0
+            - tock:
+              - go: 2.13
+                commit: v2.0.0
+              - go: 2.14
+                commit: v2.2.0
     outputs:
       matrix: ${{ steps.set-matrix.outputs.result }}
     steps:
       - id: set-matrix
         env:
           matrix: ${{ toJSON(matrix.matrix) }}
-        run: jq -r -n 'env.matrix | fromjson | @json "::set-output name=result::\(.data)"'
+        run: jq -r -n 'env.matrix | fromjson | @json "::set-output name=result::\(.data.tick)"'
 
   runner:
     needs: [ builder ]
