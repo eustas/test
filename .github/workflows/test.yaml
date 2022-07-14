@@ -15,7 +15,7 @@ jobs:
               commit: v1.0.0
             - go: 1.14
               commit: v1.2.0
-          - tensor: # this is a configuration object that is transformed to...
+            tensor: # this is a configuration object that is transformed to...
             - go: 2.13
               commit: v2.0.0
             - go: 2.14
