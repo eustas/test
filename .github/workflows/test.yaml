@@ -30,7 +30,7 @@ jobs:
     steps:
       - id: set-matrix
         run: |
-          effort=2
+          export effort=2
           echo '${{ toJSON(matrix.matrix) }}' | jq -r 'map(select(.effort <= env.effort)) | "::set-output name=result1::\(.)"'
           echo '${{ toJSON(matrix.tensor) }}' | jq -r '"::set-output name=result2::\(.)"'
 
