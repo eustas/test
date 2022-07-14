@@ -9,18 +9,24 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        cfg:
+        matrix:
           - data:
-            - go: 1.13,
+            - go: 1.13
               commit: v1.0.0
-            - { go: 1.14, commit: v1.2.0 }
+            - go: 1.14
+              commit: v1.2.0
+          - vata:
+            - go: 2.13
+              commit: v2.0.0
+            - go: 2.14
+              commit: v2.2.0
     outputs:
       matrix: ${{ steps.set-matrix.outputs.result }}
     steps:
       - id: set-matrix
         env:
-          CFG: ${{ toJSON(matrix.cfg) }}
-        run: jq -r -n 'env.CFG | fromjson | @json "::set-output name=result::\(.data)"'
+          matrix: ${{ toJSON(matrix.matrix) }}
+        run: jq -r -n 'env.matrix | fromjson | @json "::set-output name=result::\(.data)"'
 
   runner:
     needs: [ builder ]
